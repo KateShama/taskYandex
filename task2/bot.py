@@ -40,6 +40,6 @@ async def handle_message(message: types.Message):
 
 if __name__ == '__main__':
     # Запуск бота
-    dp.start_polling(skip_updates=True)
+    dp.start_polling()
 
 
