@@ -1,20 +1,21 @@
+import requests
 import json
 import random
 
 class CityPicker:
-    def __init__(self, file_path):
-        self.file_path = file_path
+    def __init__(self, file_url):
+        self.file_url = file_url
         self.cities = []
         self.load_cities()
 
     def load_cities(self):
-        with open(self.file_path, 'r') as file:
-            data = json.load(file)
-            for city_data in data:
-                name = city_data.get('name')
-                population = city_data.get('population')
-                if name and population:
-                    self.cities.append((name, population))
+        response = requests.get(self.file_url)
+        data = json.loads(response.text)
+        for city_data in data:
+            name = city_data.get('name')
+            population = city_data.get('population')
+            if name and population:
+                self.cities.append((name, population))
 
     def get_random_city(self):
         total_population = sum(city[1] for city in self.cities)
@@ -26,5 +27,9 @@ class CityPicker:
             if population_sum >= random_value:
                 return city[0]
 
+file_url = "https://raw.githubusercontent.com/KateShama/taskYandex/main/task1/input.json"
+city_picker = CityPicker(file_url)
+selected_city = city_picker.get_random_city()
+print("Выбранный город:", selected_city)
 
 
