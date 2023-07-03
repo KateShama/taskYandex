@@ -27,3 +27,8 @@ class CityPicker:
                 return city[0]
 
 
+# Создание экземпляра класса CityPopulation
+city = CityPopulation("input.json")
+
+# Вызов метода get_random_city() и вывод результата
+print(city.get_random_city())
