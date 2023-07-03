@@ -18,10 +18,12 @@ class CityPicker:
 
     def get_random_city(self):
         total_population = sum(city[1] for city in self.cities)
-        random_value = random.random() * total_population
+        probabilities = [city[1] / total_population for city in self.cities]
+        random_value = random.random()
         population_sum = 0
-        for city in self.cities:
-            population_sum += city[1]
+        for city, probability in zip(self.cities, probabilities):
+            population_sum += probability
             if population_sum >= random_value:
                 return city[0]
+
 
