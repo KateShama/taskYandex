@@ -39,6 +39,9 @@ async def handle_message(message: types.Message):
         with open('error_log.txt', 'a') as file:
             file.write(f'{datetime.now()} - Error: {e}\n')
 
+async def start_bot():
+    await dp.start_polling()
+
+
 if __name__ == '__main__':
     asyncio.run(start_bot())
-
