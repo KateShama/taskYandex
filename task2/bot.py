@@ -4,6 +4,7 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from aiogram import Bot, Dispatcher, types
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
+import asyncio
 
 logging.basicConfig(level=logging.INFO)
 
@@ -39,9 +40,5 @@ async def handle_message(message: types.Message):
             file.write(f'{datetime.now()} - Error: {e}\n')
 
 if __name__ == '__main__':
-    # Запуск бота
-    async def start_bot():
-        await dp.start_polling()
-    
     asyncio.run(start_bot())
 
