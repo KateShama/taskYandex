@@ -40,6 +40,8 @@ async def handle_message(message: types.Message):
 
 if __name__ == '__main__':
     # Запуск бота
-    dp.start_polling()
-
+    async def start_bot():
+        await dp.start_polling()
+    
+    asyncio.run(start_bot())
 
